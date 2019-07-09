@@ -1,0 +1,19 @@
+//https://www.codewars.com/kata/chess-fun-number-1-chess-board-cell-color
+
+//My Solution
+bool chessBoardCellColor(std::string cell1, std::string cell2) 
+{
+    unsigned int bias=cell1[0]-cell2[0]+cell1[1]-cell2[1];
+    if(bias%2==0)
+      return true;
+    else if(bias%2==1)
+      return false;
+}
+
+//A clever Solution
+/*
+bool chessBoardCellColor(std::string cell1, std::string cell2) 
+{
+  return (cell1[0] + cell1[1] + cell2[0] + cell2[1]) % 2 == 0;
+}
+*/
