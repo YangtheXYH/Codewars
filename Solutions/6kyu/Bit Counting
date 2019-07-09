@@ -1,0 +1,36 @@
+//https://www.codewars.com/kata/bit-counting/train/cpp
+
+//My Solution 1:Using STL <bitset>
+#include <bitset>
+#include <string>
+
+unsigned int countBits(unsigned long long n)
+{
+  std::string n_binary=std::bitset<128> (n).to_string();
+  int count=0;
+  for(auto a:n_binary)
+    {
+      if(a=='1')
+        count++;
+    }
+  return count;
+}
+
+//My Solution 2:Write a decToBinary function by myself
+/*
+//这个并未通过codewars的random test，猜测是他给出的n太大vector<int>装不下
+std::vector<int> decToBinary(int n) 
+{ 
+    std::vector<int> binaryNum;
+    
+    int i = 0; 
+    while (n > 0) 
+    { 
+        binaryNum.push_back(n%2); 
+        n= n/2; 
+        i++; 
+    } 
+  
+    return binaryNum; 
+} 
+*/
