@@ -1,0 +1,68 @@
+
+
+//My Solution
+#include <vector>
+
+typedef unsigned long long ull;
+
+
+ull fib(ull n) 
+{ 
+    if (n <= 1) 
+        return n; 
+    return fib(n-1) + fib(n-2); 
+} 
+
+class ProdFib
+{
+public:
+  static std::vector<ull> productFib(ull prod);
+};
+
+std::vector<ull> ProdFib:: productFib(ull prod)
+{
+  bool jug=0;
+  std::vector<ull> flag;
+  for(int i=0;;i++)
+    {
+      if(fib(i)*fib(i+1)==prod)
+        {
+          jug=true;
+          flag.push_back(fib(i));
+          flag.push_back(fib(i+1));
+          flag.push_back(jug);
+          break;
+        }
+      if(fib(i)*fib(i+1)>prod)
+      {
+        jug=false;
+        flag.push_back(fib(i));
+        flag.push_back(fib(i+1));
+        flag.push_back(jug);
+        break;
+      }
+      if(fib(i)*fib(i+1)<prod)
+        continue;
+    }
+    
+  return flag;
+}
+
+//A clever solution
+/*
+#include <vector>
+typedef unsigned long long ull;
+class ProdFib
+{
+public:
+  static std::vector<ull> productFib(ull prod)
+  {
+      ull a = 0, b = 1;
+      while (a * b < prod) {
+          std::swap(a, b);
+          b += a;
+      }
+      return {a, b, ((a*b == prod) ? true : false)};
+  }
+};
+*/
