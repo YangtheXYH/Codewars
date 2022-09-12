@@ -1,0 +1,44 @@
+// https://www.codewars.com/kata/5898b4b71d298e51b600014b/cpp
+// https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
+// https://stackoverflow.com/questions/10058606/splitting-a-string-by-a-character
+
+#include <string.h>
+
+char* sortTheInnerContent(const char* words, int length) 
+{
+  std::string s, temp;
+  s = words;
+  s += " ";
+  std::cout<<s<<std::endl;
+  
+  std::string delimiter  = " ";
+  
+  int pos = 0;
+  std::string token;
+  int last = 0; int next = 0; 
+
+  while ((next = s.find(delimiter, last)) != std::string::npos) 
+  {   
+      std::cout << s.substr(last, next-last) << std::endl;   
+      token = s.substr(last, next-last);
+    
+      // sort
+      if(token.size()!=1 &&s[last] != s[next])
+      {
+        std::sort(token.begin()+1, token.end()-1, std::greater<char>()); 
+      }
+    
+      temp += token;
+      temp += " ";
+    
+      last = next + 1; 
+  }
+  temp[temp.size()-1]='\0';
+  
+  // convert to char*
+  char* result = new char[temp.size() +1];
+  std::copy(temp.begin(), temp.end(), result);
+  result[temp.size()] = '\0';
+  
+  return result;
+}
